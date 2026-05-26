@@ -3,18 +3,19 @@
 最終更新: 2026-05-26
 
 ## 概要
-- プロジェクト初期化フェーズ
+- 最小プロジェクト雛形が稼働中
 - Godot 4.6.3 (.NET / C#) / Windows / headless 開発
-- まだプロジェクト本体 (`project.godot`, .csproj) は未作成
+- `Main.tscn` → `Main.cs` の "Hello from BubbleFlow" 出力を headless 実行で確認済み
 
 ## 直近の作業
-- Claude Code 用設定の整備 (`.claude/settings.json`, hooks)
-- docs/ 雛形作成 (state / architecture / commands / conventions)
-- `.gitignore` に Godot 用エントリ追加
+- `project.godot` / `BubbleFlow.csproj` / `BubbleFlow.sln` を生成
+- `scenes/Main.tscn` + `scripts/Main.cs` の最小構成
+- `icon.svg` を追加
+- `dotnet build` / `godot --headless --import` / `godot --headless --quit-after 5` の 3 ステップで動作確認
 
 ## 次にやること
-- [ ] Godot プロジェクトの初期化 (`project.godot`)
-- [ ] .NET ソリューション/プロジェクト生成
+- [ ] テストプロジェクト (`tests/`) 追加と `dotnet test` 動作確認
+- [ ] 実機能の最初のシーン設計
 
 ## 既知の問題
 - なし

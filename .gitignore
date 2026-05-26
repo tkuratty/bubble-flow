@@ -55,3 +55,13 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Godot 4+
+.godot/
+.import/
+*.import
+export.cfg
+export_presets.cfg
+*.translation
+.mono/
+data_*/

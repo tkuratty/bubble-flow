@@ -1,0 +1,48 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(godot --headless --check-only:*)",
+      "Bash(godot --headless --build-solutions:*)",
+      "Bash(godot --headless --quit-after:*)",
+      "Bash(godot --headless -s:*)",
+      "Bash(godot --headless --import:*)",
+      "Bash(godot --version)",
+      "Bash(dotnet build:*)",
+      "Bash(dotnet test:*)",
+      "Bash(dotnet format:*)",
+      "Bash(dotnet restore:*)",
+      "Bash(dotnet --info)",
+      "Bash(git add:*)",
+      "Bash(git commit -m :*)",
+      "Bash(git status)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "WebFetch(domain:docs.godotengine.org)",
+      "WebFetch(domain:github.com)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -Command \"if ($env:CLAUDE_TOOL_INPUT_FILE_PATH -match '\\.cs$') { dotnet build --nologo -clp:ErrorsOnly 2>&1 | Select-Object -Last 20 }\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -Command \"$s = Get-Item 'docs\\state.md' -ErrorAction SilentlyContinue; if ($s -and ((Get-Date) - $s.LastWriteTime).TotalHours -gt 24) { Write-Host '[reminder] docs/state.md was not updated this session' }\""
+          }
+        ]
+      }
+    ]
+  }
+}

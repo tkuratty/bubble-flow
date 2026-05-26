@@ -1,0 +1,11 @@
+<context>
+  <load>
+    docs/state.md
+    docs/tasks/enemy.md
+  </load>
+  <edit_target>scripts/Enemy.cs</edit_target>
+</context>
+
+<task>
+  Enemy の巡回移動を実装してください
+</task>
